@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/scottbedard/oc-prerender-plugin?color=blue)](https://github.com/scottbedard/oc-prerender-plugin/blob/master/LICENSE)
 
-Single page applications provide a great user experience, but are notorious for their poor SEO. This plugin bridges that gap by integrating October with [prerender.io](https://prerender.io). This allows websites like Google, Facebook, and Twitter to crawl your website perfectly, without sacraficing the experience of a SPA.
+Single page applications provide a great user experience, but are notorious for their poor SEO. This plugin bridges that gap by integrating October with [prerender.io](https://prerender.io). This allows websites like Google, Facebook, and Twitter to crawl your website perfectly, without sacrificing the experience of a SPA.
 
 ## Installation
 
@@ -63,7 +63,7 @@ If a whitelist is supplied, only url's containing a whitelist path will be prere
 
 #### Blacklist
 
-If a blacklist is supplied, all url's will be prerendered except ones containing a blacklist path. By default, a set of asset extentions are included. Note that this is the full request URI, so including starting slash and query parameter string.
+If a blacklist is supplied, all url's will be prerendered except ones containing a blacklist path. By default, a set of asset extensions are included. Note that this is the full request URI, so including starting slash and query parameter string.
 
 ```php
 'blacklist' => [
