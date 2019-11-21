@@ -3,5 +3,8 @@
     "description": "Prerendering plugin for October CMS",
     "type": "october-plugin",
     "license": "MIT",
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "^6.0",
+        "symfony/psr-http-message-bridge": "^1.0"
+    }
 }

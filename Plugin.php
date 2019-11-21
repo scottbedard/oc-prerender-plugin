@@ -3,6 +3,7 @@
 namespace Bedard\Prerender;
 
 use Backend;
+use Bedard\Prerender\Classes\PrerenderMiddleware;
 use System\Classes\PluginBase;
 
 /**
@@ -17,6 +18,9 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
+        $kernel = $this->app['Illuminate\Contracts\Http\Kernel'];
+
+        $kernel->pushMiddleware(PrerenderMiddleware::class);
     }
 
     /**
@@ -32,24 +36,5 @@ class Plugin extends PluginBase
             'icon'        => 'icon-sitemap',
             'name'        => 'Prerender',
         ];
-    }
-
-    /**
-     * Register method, called when the plugin is first registered.
-     *
-     * @return void
-     */
-    public function register()
-    {
-    }
-
-    /**
-     * Registers any back-end permissions used by this plugin.
-     *
-     * @return array
-     */
-    public function registerPermissions()
-    {
-        return [];
     }
 }
