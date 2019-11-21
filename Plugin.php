@@ -4,6 +4,8 @@ namespace Bedard\Prerender;
 
 use Backend;
 use Bedard\Prerender\Classes\PrerenderMiddleware;
+use Event;
+use GuzzleHttp\Client;
 use System\Classes\PluginBase;
 
 /**
@@ -18,9 +20,24 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        $kernel = $this->app['Illuminate\Contracts\Http\Kernel'];
+        if (config('bedard.prerender::enable')) {
+            // apply middleware to all routes
+            $kernel = $this->app['Illuminate\Contracts\Http\Kernel'];
 
-        $kernel->pushMiddleware(PrerenderMiddleware::class);
+            $kernel->pushMiddleware(PrerenderMiddleware::class);
+
+            // register an event handler to recache urls
+            Event::listen('bedard.prerender.recache', function ($url) {
+                $client = new Client();
+
+                $client->request('POST', 'https://api.prerender.io/recache', [
+                    'json' => [
+                        'prerenderToken' => config('bedard.prerender::prerenderToken'),
+                        'url' => $url,
+                    ],
+                ]);
+            });
+        }
     }
 
     /**
