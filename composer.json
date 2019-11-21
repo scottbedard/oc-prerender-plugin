@@ -1,0 +1,7 @@
+{
+    "name": "bedard/prerender",
+    "description": "Prerendering plugin for October CMS",
+    "type": "october-plugin",
+    "license": "MIT",
+    "require": {}
+}
