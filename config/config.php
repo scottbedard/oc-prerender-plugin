@@ -42,7 +42,7 @@ return [
     | 
     */
 
-    'prerenderSoftHttpCodes' => env('PRERENDER_SOFT_HTTP_STATUS_CODES', false),
+    'prerenderSoftHttpCodes' => env('PRERENDER_SOFT_HTTP_STATUS_CODES', true),
     
     /*
     |--------------------------------------------------------------------------
