@@ -38,7 +38,7 @@ Prerendering can be customized by adding the following to a configuration file a
 
 #### Whitelist
 
-Whitelist paths or patterns. If a whitelist is supplied, only url's containing a whitelist path will be prerendered. An empty array means that all URIs will pass this filter. Note that this is the full request URI, so including starting slash and query parameter string.
+If a whitelist is supplied, only url's containing a whitelist path will be prerendered. An empty array means that all URIs will pass this filter. Note that this is the full request URI, so including starting slash and query parameter string.
 
 ```php
 'whitelist' => [
@@ -48,7 +48,7 @@ Whitelist paths or patterns. If a whitelist is supplied, only url's containing a
 
 #### Blacklist
 
-Blacklist paths to exclude. If a blacklist is supplied, all url's will be prerendered except ones containing a blacklist path. By default, a set of asset extentions are included. Note that this is the full request URI, so including starting slash and query parameter string.
+If a blacklist is supplied, all url's will be prerendered except ones containing a blacklist path. By default, a set of asset extentions are included. Note that this is the full request URI, so including starting slash and query parameter string.
 
 ```php
 'blacklist' => [
