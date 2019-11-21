@@ -4,7 +4,7 @@
 
 Single page applications provide a great user experience, but are notorious for their poor SEO. This plugin bridges that gap by integrating October with [prerender.io](https://prerender.io). This allows websites like Google, Facebook, and Twitter to crawl your website perfectly, without sacraficing the experience of a SPA.
 
-## Getting Started
+## Installation
 
 Install the plugin by running the following commands from your root October directory
 
@@ -32,6 +32,21 @@ You can disable the service by adding the following to your `.env` file
 PRERENDER_ENABLE=false
 ```
 
+## Recaching pages
+
+This plugin exposes a `bedard.prerender.recache` event that can be used to recache URLs. For example, say you want to recache blog posts when the content is changes. You could add the following to your `Plugin.php` file achieve this.
+
+```php
+public function boot()
+{
+    \RainLab\Blog\Models\Post::extend(function ($model) {
+        $model->bindEvent('afterSave', function () use ($model) {
+            \Event::fire('bedard.prerender.recache', 'https://example.com/blog/' . $model->slug);
+        });
+    });
+}
+```
+
 ## Customizing
 
 Prerendering can be customized by adding the following to a configuration file at `config/bedard/prerender/config.php`. Check the [October documentation](https://octobercms.com/docs/plugin/settings#file-configuration) for information on setting environment specific configuration. [Click here](https://github.com/scottbedard/oc-prerender-plugin/blob/master/config/config.php) to see the default configuration.
@@ -56,7 +71,7 @@ If a blacklist is supplied, all url's will be prerendered except ones containing
 ]
 ```
 
-#### Crawler User Agents
+#### User Agents
 
 Requests from crawlers that do not support `_escaped_fragment_` will nevertheless be served with prerendered pages. You can customize the list of crawlers using the following config entry.
 
